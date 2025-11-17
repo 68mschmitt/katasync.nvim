@@ -50,6 +50,9 @@ function M.execute_sort_workflow(current_path, dest_dir, label, template_key, or
 
     local dest_path = dest_dir .. "/" .. unique_filename
 
+    -- Capture the original buffer number before moving the file
+    local original_bufnr = vim.api.nvim_get_current_buf()
+
     if vim.bo.modified then
         vim.cmd("write")
     end
@@ -62,6 +65,10 @@ function M.execute_sort_workflow(current_path, dest_dir, label, template_key, or
     end
 
     vim.cmd.edit(dest_path)
+
+    -- Delete the original buffer which now points to a non-existent file
+    -- Use pcall to safely handle case where buffer might already be deleted
+    pcall(vim.api.nvim_buf_delete, original_bufnr, { force = false })
 
     if template_key then
         local raw_template = cfg.templates[template_key] or ""

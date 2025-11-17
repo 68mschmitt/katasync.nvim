@@ -3,4 +3,7 @@
 ---
 
 # Bugs
-- When sorting a note, the temporary note buffer does not close on its own
+- When sorting a note from the inbox, the filename is changed from the original date of creation to the current datetime.
+    - The filename should be preserved and the additional input from the user should be appended to the beginning of the existing filename
+
+# Ideas
