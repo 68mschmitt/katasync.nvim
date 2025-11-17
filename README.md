@@ -76,7 +76,11 @@ require("katasync").setup({
   open_after_create = true,                  -- Open file after creating
   auto_save_new_note = true,                 -- Auto-save new notes to disk (false = manual :w)
   notify = true,                             -- Show notifications
-  
+
+  -- Template Directory (optional)
+  templates_dir = nil,                       -- Directory for template files (default: {base_dir}/templates)
+  create_templates_dir = false,              -- Auto-create templates directory if missing
+
   -- Templates for CreateNote and SortNote
   templates = {
     none = "",
@@ -230,6 +234,66 @@ katasync.sort_note()
 - Collision handling with `--2`, `--3`, etc.
 
 ## Templates
+
+Templates can be defined in two ways:
+
+1. **In Configuration** - Define templates directly in your Lua config (as shown above)
+2. **In Files** - Create individual `.md` files in your templates directory
+
+### Template Directory
+
+You can organize templates as individual markdown files in a dedicated directory:
+
+**Configuration:**
+
+```lua
+require("katasync").setup({
+  base_dir = "~/notes",
+  templates_dir = "~/notes/templates",  -- defaults to {base_dir}/templates
+  create_templates_dir = true,          -- auto-create if missing
+
+  -- You can still define templates in config
+  templates = {
+    quick = "{{title}}\n\n{{content}}",  -- Config templates override file templates
+  },
+})
+```
+
+**File-Based Templates:**
+
+Create `.md` files in your `templates_dir`. The filename (without extension) becomes the template key.
+
+Example: `~/notes/templates/meeting.md`
+```markdown
+# Meeting: {{title}}
+
+Date: {{date}}
+Attendees:
+-
+
+Notes:
+{{content}}
+```
+
+This creates a template with key `meeting` that appears in the template picker.
+
+**Template Precedence:**
+
+1. **Config-based templates** (highest priority)
+2. **File-based templates**
+3. **Built-in templates** (e.g., "none")
+
+If you define a template named `meeting` in both your config and as `meeting.md`, the config version will be used.
+
+**Benefits of File-Based Templates:**
+
+- Keep your config file clean and minimal
+- Easier to edit templates without restarting Neovim
+- Version control templates separately from config
+- Share templates across machines or team members
+- Better organization for many templates
+
+### Template Variables
 
 Templates support variable substitution with the following placeholders:
 
