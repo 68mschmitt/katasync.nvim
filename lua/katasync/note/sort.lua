@@ -39,8 +39,9 @@ function M.execute_sort_workflow(current_path, dest_dir, label, template_key, or
         cfg.timestamp_fmt
     )
 
-    local new_filename = filename.build_sorted_filename(
+    local new_filename = filename.build_sorted_filename_preserving_original(
         label,
+        current_path,
         extracted_timestamp,
         cfg.file_ext,
         cfg.trailing_marker
