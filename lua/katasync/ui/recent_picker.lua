@@ -1,7 +1,7 @@
 local M = {}
 
-local recent = require("memorypalace.core.recent")
-local config = require("memorypalace.config")
+local recent = require("katasync.core.recent")
+local config = require("katasync.config")
 
 function M.show_recent_picker(callback)
     local cfg = config.get()

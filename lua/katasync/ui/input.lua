@@ -1,6 +1,6 @@
 local M = {}
 
-local label_module = require("memorypalace.core.label")
+local label_module = require("katasync.core.label")
 
 function M.prompt_for_label(callback)
     vim.ui.input({ prompt = "Enter a descriptive name (optional, press Enter to skip): " }, function(input)

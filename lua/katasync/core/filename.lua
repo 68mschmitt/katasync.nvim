@@ -1,6 +1,6 @@
 local M = {}
 
-local fs = require("memorypalace.core.fs")
+local fs = require("katasync.core.fs")
 
 function M.build(timestamp, slug, ext)
     return timestamp .. "--" .. slug .. ext

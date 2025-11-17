@@ -1,11 +1,11 @@
 local M = {}
 
-local time = require("memorypalace.core.time")
-local slug = require("memorypalace.core.slug")
-local filename = require("memorypalace.core.filename")
-local fs = require("memorypalace.core.fs")
-local notify = require("memorypalace.ui.notify")
-local config = require("memorypalace.config")
+local time = require("katasync.core.time")
+local slug = require("katasync.core.slug")
+local filename = require("katasync.core.filename")
+local fs = require("katasync.core.fs")
+local notify = require("katasync.ui.notify")
+local config = require("katasync.config")
 
 function M.create_blank_note(inbox_dir)
     fs.ensure_dir(inbox_dir)

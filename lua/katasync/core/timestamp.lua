@@ -1,6 +1,6 @@
 local M = {}
 
-local time = require("memorypalace.core.time")
+local time = require("katasync.core.time")
 
 function M.extract_timestamp_from_filename(filename)
     local basename = vim.fn.fnamemodify(filename, ":t")

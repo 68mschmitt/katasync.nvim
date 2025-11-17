@@ -18,7 +18,7 @@ local default_config = {
     default_template = "none",
     enable_recent_dirs = true,
     max_recent_dirs = 5,
-    recent_state_file = vim.fn.stdpath("state") .. "/memory-palace-mru.json",
+    recent_state_file = vim.fn.stdpath("state") .. "/katasync-mru.json",
 }
 
 local config = {}

@@ -1,6 +1,6 @@
 local M = {}
 
-local directory = require("memorypalace.core.directory")
+local directory = require("katasync.core.directory")
 
 local function normalize_path(path)
     path = path:gsub("/+$", "")

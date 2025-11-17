@@ -1,8 +1,8 @@
 local M = {}
 
 local function get_state_file_path()
-    local config = require("memorypalace.config").get()
-    return config.recent_state_file or (vim.fn.stdpath("state") .. "/memory-palace-mru.json")
+    local config = require("katasync.config").get()
+    return config.recent_state_file or (vim.fn.stdpath("state") .. "/katasync-mru.json")
 end
 
 function M.load_recent()
@@ -49,7 +49,7 @@ function M.save_recent(data)
 end
 
 function M.add_recent_entry(dir, template, label)
-    local config = require("memorypalace.config").get()
+    local config = require("katasync.config").get()
 
     if not config.enable_recent_dirs then
         return
@@ -86,7 +86,7 @@ function M.add_recent_entry(dir, template, label)
 end
 
 function M.get_recent_list()
-    local config = require("memorypalace.config").get()
+    local config = require("katasync.config").get()
 
     if not config.enable_recent_dirs then
         return {}

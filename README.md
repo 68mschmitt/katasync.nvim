@@ -1,4 +1,4 @@
-# memory-palace.nvim
+# katasync.nvim
 
 A minimal Neovim plugin for quick note creation and organization. Capture thoughts instantly in your inbox, then sort them into a structured hierarchy when ready.
 
@@ -37,7 +37,7 @@ A minimal Neovim plugin for quick note creation and organization. Capture though
 
 ```lua
 {
-  "68mschmitt/memory-palace.nvim",
+  "68mschmitt/katasync.nvim",
   cmd = { "NewNote", "CreateNote", "SortNote" },
   keys = {
     { "<leader>nn", "<cmd>NewNote<cr>", desc = "New note (inbox)" },
@@ -55,9 +55,9 @@ A minimal Neovim plugin for quick note creation and organization. Capture though
 
 ```lua
 use {
-  '68mschmitt/memory-palace.nvim',
+  '68mschmitt/katasync.nvim',
   config = function()
-    require('memorypalace').setup({
+    require('katasync').setup({
       inbox_dir = '~/notes/inbox',
     })
   end
@@ -67,7 +67,7 @@ use {
 ## Configuration
 
 ```lua
-require("memorypalace").setup({
+require("katasync").setup({
   -- Note Creation
   inbox_dir = "~/notes/inbox",              -- Directory for new notes
   base_dir = "~/notes",                      -- Base directory for CreateNote and sorting
@@ -142,7 +142,7 @@ Original content:
   -- Recent Destinations (for CreateNote and SortNote)
   enable_recent_dirs = true,                 -- Enable recent destinations feature
   max_recent_dirs = 5,                       -- Number of recent destinations to remember
-  recent_state_file = vim.fn.stdpath("state") .. "/memory-palace-mru.json",
+  recent_state_file = vim.fn.stdpath("state") .. "/katasync-mru.json",
   
   -- Note Sorting
   trailing_marker = "--note",                -- Filename suffix marker
@@ -194,16 +194,16 @@ Original content:
 ### Programmatic API
 
 ```lua
-local memorypalace = require("memorypalace")
+local katasync = require("katasync")
 
 -- Create a new note in inbox and get the path
-local path = memorypalace.new_note()
+local path = katasync.new_note()
 
 -- Create a note in chosen location (interactive)
-memorypalace.create_note_at()
+katasync.create_note_at()
 
 -- Sort the current note
-memorypalace.sort_note()
+katasync.sort_note()
 ```
 
 ## File Naming
@@ -302,7 +302,7 @@ Select destination:
 - Faster workflow: 3 clicks → 1 click + label input
 - Shared history between `:CreateNote` and `:SortNote` for consistent workflows
 
-**Storage:** Recent destinations are stored locally in `~/.local/state/nvim/memory-palace-mru.json`
+**Storage:** Recent destinations are stored locally in `~/.local/state/nvim/katasync-mru.json`
 
 ## Directory Navigation
 
