@@ -18,5 +18,9 @@ function M.create_note_at()
     return require("katasync.note.create_at").create_note_at()
 end
 
+function M.list_inbox(args)
+    return require("katasync.note.list_inbox").list_inbox(args)
+end
+
 return M
 

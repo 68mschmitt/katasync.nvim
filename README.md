@@ -19,6 +19,14 @@ A minimal Neovim plugin for quick note creation and organization. Capture though
 - **Template Variables**: Support for `{{title}}`, `{{date}}`, `{{datetime}}`, `{{timestamp}}`
 - **Smart Naming**: Format becomes `{label}-{timestamp}--note.md` (or just `{timestamp}--note.md` if no label)
 
+### Inbox Display (`:ListInbox`)
+- **Visual Inbox**: Display all unsorted notes in your inbox
+- **Relative Timestamps**: See how old each note is ("2 hours ago", "yesterday", etc.)
+- **Interactive Picker**: Select notes to open and review
+- **Sorting Options**: View notes newest-first or oldest-first
+- **Empty Inbox Detection**: Helpful message when inbox is empty
+- **Quick Access**: Streamline the capture-then-sort workflow
+
 ### Note Sorting (`:SortNote`)
 - **Recent Destinations**: Quick access to recently used directories with saved templates
 - **Directory Drill-down**: Interactive navigation through your note structure
@@ -38,11 +46,12 @@ A minimal Neovim plugin for quick note creation and organization. Capture though
 ```lua
 {
   "68mschmitt/katasync.nvim",
-  cmd = { "NewNote", "CreateNote", "SortNote" },
+  cmd = { "NewNote", "CreateNote", "SortNote", "ListInbox" },
   keys = {
     { "<leader>nn", "<cmd>NewNote<cr>", desc = "New note (inbox)" },
     { "<leader>nc", "<cmd>CreateNote<cr>", desc = "Create note at location" },
     { "<leader>ns", "<cmd>SortNote<cr>", desc = "Sort/move note" },
+    { "<leader>ni", "<cmd>ListInbox<cr>", desc = "List inbox notes" },
   },
   opts = {
     inbox_dir = "~/notes/inbox",
@@ -167,6 +176,9 @@ Original content:
 
 - `:NewNote` - Creates a blank markdown file in your inbox
 - `:CreateNote` - Create a note directly in a chosen location with optional label and template
+- `:ListInbox` - Display all inbox notes with relative timestamps for easy review
+  - `:ListInbox newest` - Sort by newest first (default)
+  - `:ListInbox oldest` - Sort by oldest first
 - `:SortNote` - Move and rename the current note with interactive directory selection
 
 ### Workflows
@@ -174,7 +186,10 @@ Original content:
 #### Capture-Then-Sort (Unknown destination)
 1. **Capture**: Use `:NewNote` to quickly create a note in your inbox
 2. **Edit**: Write your content without worrying about organization
-3. **Sort**: When ready, use `:SortNote` to:
+3. **Review**: Use `:ListInbox` to see all unsorted notes with relative timestamps
+   - Select a note to open and review
+   - See at a glance which notes need attention
+4. **Sort**: When ready, use `:SortNote` to:
    - **Quick path**: Select from recent destinations (includes saved template)
    - **Full path**: Navigate through your directory structure
    - Choose a destination (or create new directories)
@@ -205,6 +220,9 @@ local path = katasync.new_note()
 
 -- Create a note in chosen location (interactive)
 katasync.create_note_at()
+
+-- Display inbox notes (interactive)
+katasync.list_inbox()
 
 -- Sort the current note
 katasync.sort_note()
