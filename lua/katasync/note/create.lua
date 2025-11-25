@@ -30,6 +30,10 @@ function M.create_blank_note(inbox_dir)
 
     if cfg.open_after_create then
         vim.cmd.edit(full_path)
+        -- Ensure filetype is set for LSP activation, especially when file doesn't exist yet
+        if not cfg.auto_save_new_note then
+            vim.bo.filetype = "markdown"
+        end
     end
 
     if cfg.notify then

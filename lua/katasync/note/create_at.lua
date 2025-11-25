@@ -40,9 +40,14 @@ function M.create_with_params(dest_dir, template_key, label)
     if cfg.open_after_create then
         vim.cmd.edit(full_path)
 
-        if not cfg.auto_save_new_note and template_content ~= "" then
-            local lines = vim.split(template_content, "\n")
-            vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+        if not cfg.auto_save_new_note then
+            -- Ensure filetype is set for LSP activation, especially when file doesn't exist yet
+            vim.bo.filetype = "markdown"
+            
+            if template_content ~= "" then
+                local lines = vim.split(template_content, "\n")
+                vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+            end
         end
     end
 
